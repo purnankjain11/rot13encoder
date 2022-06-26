@@ -22,11 +22,8 @@ app.post("/convert", (req: Request, res: Response) => {
   const codes = data.split(" ");
 
   for (let code of codes) {
-    console.log({ code });
     const ascii = getNumerical(code);
-    console.log({ ascii });
     const rot13Ascii = getRot13(ascii);
-    console.log({ rot13Ascii });
     result += (`00000000` + getUTF8(rot13Ascii)).slice(-8) + " ";
   }
   res.status(201);
