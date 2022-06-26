@@ -1,6 +1,6 @@
-import { convertUtf8BinaryToRot13 } from "./rot13";
+import { convertUtf8BinaryToRot13, convertUtf8ToRot13 } from "./rot13";
 
-describe("Test ROT13 Convertor", () => {
+describe("Test UTF8 Binary ROT13 Convertor", () => {
   test("Should work for lower case", () => {
     const data = "01100001"; //a
     const expected = "01101110"; //n
@@ -41,6 +41,51 @@ describe("Test ROT13 Convertor", () => {
 
     const actual = convertUtf8BinaryToRot13(data);
     const reverseActual = convertUtf8BinaryToRot13(actual);
+
+    expect(actual).toBe(expected);
+    expect(reverseActual).toBe(data);
+  });
+});
+
+describe("Test UTF8 String ROT13 conversion", () => {
+  test("Should work for lower case", () => {
+    const data = "a";
+    const expected = "n";
+
+    const actual = convertUtf8ToRot13(data);
+    const reverseActual = convertUtf8ToRot13(actual);
+
+    expect(actual).toBe(expected);
+    expect(reverseActual).toBe(data);
+  });
+  test("Should work for upper case", () => {
+    const data = "A";
+    const expected = "N";
+
+    const actual = convertUtf8ToRot13(data);
+    const reverseActual = convertUtf8ToRot13(actual);
+
+    expect(actual).toBe(expected);
+    expect(reverseActual).toBe(data);
+  });
+  test("Should work for a sentence", () => {
+    const data = "The quick brown fox jumps over the lazy dog.";
+    const expected = "Gur dhvpx oebja sbk whzcf bire gur ynml qbt.";
+
+    const actual = convertUtf8ToRot13(data);
+    const reverseActual = convertUtf8ToRot13(actual);
+
+    expect(actual).toBe(expected);
+    expect(reverseActual).toBe(data);
+  });
+  test("Should work for long sentences", () => {
+    const data =
+      "Magna excepteur voluptate nostrud quis irure ullamco cillum aute mollit excepteur occaecat id nisi ex. Aute id exercitation consectetur elit. Exercitation cillum irure labore irure fugiat amet laboris aliquip nisi ex. Minim incididunt culpa dolore pariatur irure. Anim voluptate elit occaecat consectetur anim enim. Magna excepteur voluptate nostrud quis irure ullamco cillum aute mollit excepteur occaecat id nisi ex. Aute id exercitation consectetur elit. Exercitation cillum irure labore irure fugiat amet laboris aliquip nisi ex. Minim incididunt culpa dolore pariatur irure. Anim voluptate elit occaecat consectetur anim enim. Magna excepteur voluptate nostrud quis irure ullamco cillum aute mollit excepteur occaecat id nisi ex. Aute id exercitation consectetur elit. Exercitation cillum irure labore irure fugiat amet laboris aliquip nisi ex. Minim incididunt culpa dolore pariatur irure. Anim voluptate elit occaecat consectetur anim enim.Magna excepteur voluptate nostrud quis irure ullamco cillum aute mollit excepteur occaecat id nisi ex. Aute id exercitation consectetur elit. Exercitation cillum irure labore irure fugiat amet laboris aliquip nisi ex. Minim incididunt culpa dolore pariatur irure. Anim voluptate elit occaecat consectetur anim enim.";
+    const expected =
+      "Zntan rkprcgrhe ibyhcgngr abfgehq dhvf veher hyynzpb pvyyhz nhgr zbyyvg rkprcgrhe bppnrpng vq avfv rk. Nhgr vq rkrepvgngvba pbafrpgrghe ryvg. Rkrepvgngvba pvyyhz veher ynober veher shtvng nzrg ynobevf nyvdhvc avfv rk. Zvavz vapvqvqhag phycn qbyber cnevnghe veher. Navz ibyhcgngr ryvg bppnrpng pbafrpgrghe navz ravz. Zntan rkprcgrhe ibyhcgngr abfgehq dhvf veher hyynzpb pvyyhz nhgr zbyyvg rkprcgrhe bppnrpng vq avfv rk. Nhgr vq rkrepvgngvba pbafrpgrghe ryvg. Rkrepvgngvba pvyyhz veher ynober veher shtvng nzrg ynobevf nyvdhvc avfv rk. Zvavz vapvqvqhag phycn qbyber cnevnghe veher. Navz ibyhcgngr ryvg bppnrpng pbafrpgrghe navz ravz. Zntan rkprcgrhe ibyhcgngr abfgehq dhvf veher hyynzpb pvyyhz nhgr zbyyvg rkprcgrhe bppnrpng vq avfv rk. Nhgr vq rkrepvgngvba pbafrpgrghe ryvg. Rkrepvgngvba pvyyhz veher ynober veher shtvng nzrg ynobevf nyvdhvc avfv rk. Zvavz vapvqvqhag phycn qbyber cnevnghe veher. Navz ibyhcgngr ryvg bppnrpng pbafrpgrghe navz ravz.Zntan rkprcgrhe ibyhcgngr abfgehq dhvf veher hyynzpb pvyyhz nhgr zbyyvg rkprcgrhe bppnrpng vq avfv rk. Nhgr vq rkrepvgngvba pbafrpgrghe ryvg. Rkrepvgngvba pvyyhz veher ynober veher shtvng nzrg ynobevf nyvdhvc avfv rk. Zvavz vapvqvqhag phycn qbyber cnevnghe veher. Navz ibyhcgngr ryvg bppnrpng pbafrpgrghe navz ravz.";
+
+    const actual = convertUtf8ToRot13(data);
+    const reverseActual = convertUtf8ToRot13(actual);
 
     expect(actual).toBe(expected);
     expect(reverseActual).toBe(data);

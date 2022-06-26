@@ -11,6 +11,17 @@ export function convertUtf8BinaryToRot13(data: string) {
   return result.trim();
 }
 
+export function convertUtf8ToRot13(data: string) {
+  let result = "";
+
+  for (let characters of data) {
+    const ascii = characters.charCodeAt(0);
+    const rot13Ascii = getRot13(ascii);
+    result += String.fromCharCode(rot13Ascii);
+  }
+  return result.trim();
+}
+
 function getNumerical(code: string): number {
   const length = code.length;
   if (length === 0) {
