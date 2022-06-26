@@ -1,4 +1,4 @@
-export function convertUtf8ToRot13(data: string) {
+export function convertUtf8BinaryToRot13(data: string) {
   let result = "";
 
   const codes = data.split(" ");

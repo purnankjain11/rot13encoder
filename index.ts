@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import express from "express";
-import { convertUtf8ToRot13 } from "./src/rot13";
+import { convertUtf8BinaryToRot13 } from "./src/rot13";
 const app = express();
 const PORT = 5000;
 
@@ -18,7 +18,7 @@ app.post("/convert", (req: Request, res: Response) => {
     res.status(400);
     res.send("data cannot be empty");
   }
-  let result = convertUtf8ToRot13(data);
+  let result = convertUtf8BinaryToRot13(data);
   res.status(201);
   res.send({ result });
 });
